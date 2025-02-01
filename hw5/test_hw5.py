@@ -475,7 +475,7 @@ def test_add_running_mean_column(table, column, name, expected):
         helpers.fail_and_augment_recreate_unexpected_exception(recreate_msg, e)
 
 
-    err_msg = helpers.check_2D_vals(lambda x, y: x == y,
+    err_msg = helpers.check_2D_vals(lambda x, y: pytest.approx(x) == y,
                                        work_table,
                                        expected)
     if err_msg is not None:
