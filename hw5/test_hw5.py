@@ -185,7 +185,7 @@ def test_filter_exact(table, column, value, negate, expected):
     """
     steps = [
              f"table = {table}",
-             f"actual = hw5.filter_exact(table)"]
+             f"actual = hw5.filter_exact(table, '{column}', {helpers.add_quotes_if_needed(value)}, {negate})"]
     recreate_msg = helpers.gen_recreate_commands(MODULE, steps)
 
     table_copy = copy.deepcopy(table) # check that the table wasn't modified
@@ -217,7 +217,7 @@ def test_filter_exact_optional(table, column, value, expected):
     """
     steps = [
              f"table = {table}",
-             f"actual = hw5.filter_exact(table)"]
+             f"actual = hw5.filter_exact(table, '{column}', {helpers.add_quotes_if_needed(value)})"]
     recreate_msg = helpers.gen_recreate_commands(MODULE, steps)
 
     table_copy = copy.deepcopy(table) # check that the table wasn't modified
