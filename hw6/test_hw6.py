@@ -82,34 +82,34 @@ can_craft_data =[
     (0, 3, False),
     (0, 4, True),
     (0, 5, False),
-    (0, 6, True),
+    (0, 6, False),
     (1, 0, False),
     (1, 1, False),
-    (1, 2, False),
+    (1, 2, True),
     (1, 3, True),
     (1, 4, False),
     (1, 5, False),
     (1, 6, False),
-    (2, 0, True),
-    (2, 1, True),
+    (2, 0, False),
+    (2, 1, False),
     (2, 2, False),
     (2, 3, False),
     (2, 4, False),
-    (2, 5, True),
+    (2, 5, False),
     (2, 6, False),
-    (3, 0, False),
-    (3, 1, False),
+    (3, 0, True),
+    (3, 1, True),
     (3, 2, False),
     (3, 3, False),
     (3, 4, False),
-    (3, 5, False),
+    (3, 5, True),
     (3, 6, False),
-    (4, 0, True),
-    (4, 1, True),
+    (4, 0, False),
+    (4, 1, False),
     (4, 2, False),
     (4, 3, False),
     (4, 4, False),
-    (4, 5, True),
+    (4, 5, False),
     (4, 6, False),
 ]
 @pytest.mark.parametrize("ix, jx, expected", can_craft_data)
@@ -123,7 +123,7 @@ def test_can_craft(ix, jx, expected):
     recreate_msg = helpers.gen_recreate_commands(MODULE, steps)
 
     try:
-        actual = hw6.can_craft(players[ix], crafting_recipes[jx])
+        actual = hw6.can_craft(crafting_recipes[jx], players[ix])
     except Exception as e:
         helpers.fail_and_augment_recreate_unexpected_exception(recreate_msg, e)
 
