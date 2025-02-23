@@ -517,7 +517,6 @@ def test_player_sell_item_1():
         player2.pick_up_item(sword, 1)
         player2.sell_item("Sword", 1, player1)
 
-        print(player1.inventory.items)
         item, qty = player1.inventory.get_item("Sword")
         # Check if item transferred correctly
         actual_item, actual_qty = player1.inventory.get_item("Sword")
