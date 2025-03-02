@@ -218,6 +218,8 @@ def test_morph(tree, ph, expected):
         ]
     recreate_msg = helpers.gen_recreate_commands(MODULE, steps)
 
+    tree_copy = copy.deepcopy(tree) # make copy of tree to check that it wasn't modified
+
     try:
         actual = hw8.morph(tree, ph)
     except Exception as e:
@@ -226,6 +228,11 @@ def test_morph(tree, ph, expected):
     err_msg = helpers.check_result(repr(actual), repr(expected))
     if err_msg is not None:
         pytest.fail(err_msg + recreate_msg)
+
+    err_msg = helpers.check_list_unmodified('tree', repr(tree), repr(tree_copy))
+    if err_msg is not None:
+        pytest.fail(err_msg + recreate_msg)
+
 
 @pytest.mark.parametrize("tree, expected",
                          [(Terminal(''), Terminal('')),
@@ -250,12 +257,18 @@ def test_reversal(tree, expected):
         ]
     recreate_msg = helpers.gen_recreate_commands(MODULE, steps)
 
+    tree_copy = copy.deepcopy(tree) # make copy of tree to check that it wasn't modified
+
     try:
         actual = hw8.reversal(tree)
     except Exception as e:
         helpers.fail_and_augment_recreate_unexpected_exception(recreate_msg, e)
 
     err_msg = helpers.check_result(repr(actual), repr(expected))
+    if err_msg is not None:
+        pytest.fail(err_msg + recreate_msg)
+
+    err_msg = helpers.check_list_unmodified('tree', repr(tree), repr(tree_copy))
     if err_msg is not None:
         pytest.fail(err_msg + recreate_msg)
 
